@@ -1,6 +1,6 @@
 async function getQuote() {
     document.querySelector('.loader').style.display = "flex";
-
+   
     try {
         const response = await fetch("https://thatsthespir.it/api");
         const data = await response.json();
@@ -10,25 +10,16 @@ async function getQuote() {
         quote.innerHTML = data.quote;
 
         //Create and displays picture if there is a link
-        let picture = document.querySelector('.picture');
-        if (picture == null){
+        picture.addEventListener("load", (event) => {
             document.querySelector('.loader').style.display = "none";
-        }
-        if (picture !== null){
-            document.querySelector('div').removeChild(picture);
-            document.querySelector('.loader').style.display = "none";
-        }
-        if (data.photo !== ""){
-            let picture = document.createElement('img');
-            picture.addEventListener("load", (event) => {
-                document.querySelector('.loader').style.display = "none";
-                console.log("page is fully loaded");
-              });
-            picture.classList.add("picture");
+            console.log("page is fully loaded");
+          });
+        if (data.photo == ''){
+            picture.src = "assets/avatar.png";
+        } else {
             picture.src = data.photo;
-            picture.alt="Picture of the author of the quotation";
-            document.querySelector('div').insertBefore(picture, author);
         }
+
         //displays author
         author.textContent = data.author;
     }
@@ -39,16 +30,14 @@ async function getQuote() {
     
 
 }
-// window.addEventListener("load", (event) => {
-//     document.querySelector('.loader').style.display = "none";
-//     console.log("page is fully loaded");
-//   });
 
 let quote = document.querySelector('blockquote');
 let author = document.querySelector('p');
+let picture = document.querySelector('.author');
 
-getQuote(quote, author);
-console.log(document.querySelector('img'));
+
+getQuote();
+
 document.querySelector('button').addEventListener('click',() => {
     getQuote();
     window.addEventListener("load", (event) => {
@@ -56,8 +45,3 @@ document.querySelector('button').addEventListener('click',() => {
         console.log("page is fully loaded");
       });
 })
-
-// window.addEventListener("load", (event) => {
-//     document.querySelector('.loader').style.display = "none";
-//     console.log("page is fully loaded");
-//   });
