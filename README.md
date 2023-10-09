@@ -1,5 +1,5 @@
 # random-quote-using-async-await
-Becode exercise 17 : consume a web service using async/await
+Becode exercise 17 : consume a web service using async/await : Make an asynchronous request to a remote server via javascript using async/await and try/catch.
 
 ## Briefing
 [Instructions](https://github.com/becodeorg/CRL-KELLER-6/blob/main/1.TRAIL/2.The-Hill/1.DOM/12.Asynchrone/randomQuote.md) for the exercise.
