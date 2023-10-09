@@ -10,14 +10,19 @@ async function getQuote() {
         quote.innerHTML = data.quote;
 
         //Create and displays picture if there is a link
+        
+
         picture.addEventListener("load", (event) => {
             document.querySelector('.loader').style.display = "none";
-            console.log("page is fully loaded");
           });
         if (data.photo == ''){
             picture.src = "assets/avatar.png";
         } else {
             picture.src = data.photo;
+            picture.addEventListener("error", () => {
+                console.log("bad src", picture.src)
+                picture.src = "assets/avatar.png";
+            });
         }
 
         //displays author
